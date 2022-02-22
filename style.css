@@ -1,0 +1,130 @@
+/* Add parent box to create equal columns */
+.parent {
+    margin: 0;
+    padding:0;
+    background-color: black;
+    height: 450px;
+    width: 600px;
+    column-count: 3;
+    column-gap: 2px; 
+    border: 2px solid black;
+    position: relative;
+    
+}
+
+/* ensure each column stays within parent element without overflow */
+
+.left, .middle, .right {
+    display:inline-block;
+}
+
+/* background color changes from yellow to blue */
+
+.left {
+    height:450px;
+    width:200px;
+    animation: color-change 3s infinite ease-in-out;
+   
+}
+
+/* Align the text to center and change color from black on yellow background
+to white on blue background */
+
+.left .content {
+    width:100%;
+    height:100%;
+    text-align: center;
+    position: relative;
+    padding-top: 100%;
+    font-size: 20pt;
+    font-family:'Franklin Gothic Medium', sans-serif;
+    font-weight: bold;
+    animation: text-color 3s infinite ease-in-out;
+    
+}
+
+/* white background, no animation */
+
+.middle {
+    background-color: white;
+    height:450px;
+    width:200px;
+  
+}
+
+/* text completes a 360 rotation */
+
+.middle .content {
+    margin-top: 100%;
+    position:relative;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 20pt;
+    font-weight:bold;
+    font-family:'Franklin Gothic Medium', sans-serif;
+    animation: spin 2s infinite ease-in-out;
+    transform:translateY(-50%)
+}
+
+/* solid blue background */
+
+.right {
+    background-color:rgb(23, 26, 190);
+    height:450px;
+    width:200px;
+}
+
+/* Text starts from the top, shifts to middle, bottom and back to top.
+White, black, white, black, white */
+/* Not quite as centered vertically as I would like */
+
+.right .content {
+    height:100%;
+    text-align: center;
+    font-size: 20pt;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', sans-serif;
+    animation: shift 3s infinite ease-in-out
+}
+
+/* left column background animation */
+
+@keyframes color-change { 
+    0% {background-color:rgb(255, 230, 0)}
+    50% {background-color:rgb(23, 26, 190)}
+    51% {background-color:rgb(23, 26, 190)}
+    100% {background-color:rgb(255, 230, 0)}
+    
+}
+
+/* left columnn text animation */ 
+
+@keyframes text-color {
+    0% {color: black}
+    50% {color: white}
+    51% {color: white}
+    100% {color:black}
+}
+
+/* middle column text animation */
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);}
+    to {
+        transform:rotate(360deg);}
+}
+
+/* right column text animation */
+
+@keyframes shift {
+    0% {transform: translateY(15%);
+        color:white}
+    25% {transform:translateY(50%);
+        color:black}
+    50% {transform:translateY(85%);
+        color:white}
+    85% {color:black}
+    100% {transform: translateY(15%);
+        color:white}
+}
